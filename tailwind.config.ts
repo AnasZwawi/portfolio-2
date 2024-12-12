@@ -1,3 +1,4 @@
+import { transform } from "next/dist/build/swc";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -55,7 +56,28 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+			animation: {
+				'ping-large': "ping-large 0.7s ease-in-out infinite",
+				'spin-slow': "spin-slow 5s linear infinite"
+			},
+			keyframes:{
+				"ping-large":{
+					"75%, 100%":{
+						transform: "scale(3)",
+						opacity: "0"
+					}
+				},
+				"spin-slow":{
+					"0%": {
+						transform: "rotate(0deg)",
+					},
+					"100%": {
+						transform: "rotate(360deg)",
+					},
+				}
+			},
+
   	}
   },
   plugins: [require("tailwindcss-animate")],
