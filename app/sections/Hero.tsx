@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export const Hero = () => {
   return (
-    <div className="w-full mt-[8rem] flex flex-col justify-center relative overflow-x-clip ">
+    <div className="w-full mt-[4rem] md:mt-[8rem] flex flex-col justify-center relative overflow-x-clip ">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-auto w-[1000px] h-[1000px] rounded-full border border-black/50">
         <Icon
           iconNode={starNorth}
