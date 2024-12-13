@@ -32,18 +32,21 @@ export const AboutSectionTwo = () => {
               className="border-2 border-black/80 shadow"
               name="name"
               type="text"
+              required
             />
             <Input
               placeholder="Email"
               className="border-2 border-black/80 shadow"
               name="email"
               type="email"
+              required
             />
           </div>
           <Textarea
             placeholder="Your Message"
             className="border-2 border-black/80 shadow mt-4 max-h-[150px]"
             name="message"
+            required
           />
           <Button className="mt-4 text-[15px] px-5 py-[21px] rounded-lg w-full"> Send Message<Send/></Button>
         </form>
