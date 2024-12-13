@@ -50,7 +50,7 @@ export const Hero = () => {
           <span className="text-sm">Available for new projects</span>
         </div>
       </div>
-      <div className="mt-8 flex z-40 flex-col items-center gap-3 leading-[3rem] text-center max-w-[700px] mx-auto">
+      <div className="mt-8 flex z-40 flex-col items-center gap-5 leading-[3rem] text-center max-w-[700px] mx-auto">
         <h1 className="font-black uppercase text-[32px] md:text-[48px] drop-shadow-md px-1">
           Creating Outstanding Digital Experiences
         </h1>
@@ -58,7 +58,7 @@ export const Hero = () => {
           I turn ideas into smooth, responsive, and powerful web applications.
           Let’s work together to create something incredible!
         </p>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 mt-3">
           <Button className="px-[22px] py-6 text-[15px] gap-1 rounded-lg ">
             Explore My Work <ArrowDown />
           </Button>
