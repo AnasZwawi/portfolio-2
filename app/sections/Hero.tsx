@@ -51,7 +51,7 @@ export const Hero = () => {
         </div>
       </div>
       <div className="mt-8 flex z-40 flex-col items-center gap-3 leading-[3rem] text-center max-w-[700px] mx-auto">
-        <h1 className="font-black uppercase text-[35px] md:text-[48px] drop-shadow-md">
+        <h1 className="font-black uppercase text-[32px] md:text-[48px] drop-shadow-md px-1">
           Creating Outstanding Digital Experiences
         </h1>
         <p className="text-lg font-medium">

@@ -1,0 +1,43 @@
+{
+  "projects": [
+    {
+      "name": "jobfitAI",
+      "id": 1,
+      "title": "AI-Powered Resume Screener",
+      "creation_year": 2024,
+      "features": [
+        "Intelligent resume ranking",
+        "Customizable job criteria",
+        "Integration with Supabase",
+        "Django API for text extraction"
+      ],
+      "image_url": "p1.png"
+    },
+    {
+      "name": "Propria",
+      "id": 2,
+      "title": "Legal Services Marketplace",
+      "creation_year": 2023,
+      "features": [
+        "Microservices architecture",
+        "Next.js and Go-powered platform",
+        "5K monthly active users",
+        "Real-time messaging system"
+      ],
+      "image_url": "p2.png"
+    },
+    {
+      "name": "jobfitAI",
+      "id": 3,
+      "title": "AI-Powered Resume Screener",
+      "creation_year": 2024,
+      "features": [
+        "Intelligent resume ranking",
+        "Customizable job criteria",
+        "Integration with Supabase",
+        "Django API for text extraction"
+      ],
+      "image_url": "p3.png"
+    }
+  ]
+}

@@ -59,7 +59,8 @@ const config: Config = {
   		},
 			animation: {
 				'ping-large': "ping-large 0.7s ease-in-out infinite",
-				'spin-slow': "spin-slow 5s linear infinite"
+				'spin-slow': "spin-slow 5s linear infinite",
+				'move-left': "move-left 25s linear infinite",
 			},
 			keyframes:{
 				"ping-large":{
@@ -75,6 +76,14 @@ const config: Config = {
 					"100%": {
 						transform: "rotate(360deg)",
 					},
+				},
+				"move-left":{
+					"0%":{
+						transform: "translateX(0%)",
+					},
+					"100%":{
+						transform: "translateX(-50%)",
+					}
 				}
 			},
 
