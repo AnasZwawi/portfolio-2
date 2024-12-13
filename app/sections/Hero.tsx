@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Icon, Sparkle } from "lucide-react";
+import { ArrowDown, Icon } from "lucide-react";
 import React from "react";
 import { starNorth } from "@lucide/lab";
 import Image from "next/image";

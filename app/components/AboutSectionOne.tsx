@@ -1,5 +1,4 @@
 import { Sparkle } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 import {
   RiCss3Fill,
@@ -10,7 +9,7 @@ import {
   RiTailwindCssFill,
 } from "react-icons/ri";
 import { Skill } from "../components/Skill";
-import { SiFastapi, SiShadcnui, SiTypescript } from "react-icons/si";
+import { SiFastapi, SiShadcnui } from "react-icons/si";
 import {
   BiLogoDjango,
   BiLogoGoLang,

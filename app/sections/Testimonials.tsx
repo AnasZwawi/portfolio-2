@@ -1,7 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { CircleCheck, Dot, MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";
 

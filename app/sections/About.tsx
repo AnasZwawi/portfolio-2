@@ -1,26 +1,4 @@
-import { Sparkle } from "lucide-react";
-import Image from "next/image";
 import React from "react";
-import {
-  RiCss3Fill,
-  RiHtml5Fill,
-  RiJavascriptFill,
-  RiNextjsFill,
-  RiReactjsFill,
-  RiTailwindCssFill,
-} from "react-icons/ri";
-import { Skill } from "../components/Skill";
-import { SiShadcnui, SiTypescript } from "react-icons/si";
-import {
-  BiLogoDjango,
-  BiLogoGoLang,
-  BiLogoPostgresql,
-  BiLogoTypescript,
-} from "react-icons/bi";
-import { DiPython } from "react-icons/di";
-import { FaGolang } from "react-icons/fa6";
-import { AiFillApi } from "react-icons/ai";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { AboutSectionOne } from "../components/AboutSectionOne";
 import { AboutSectionTwo } from "../components/AboutSectionTwo";
 

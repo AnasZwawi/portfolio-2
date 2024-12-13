@@ -1,4 +1,4 @@
-import { Key, Sparkle } from "lucide-react";
+import { Sparkle } from "lucide-react";
 import React, { Fragment } from "react";
 
 const words = [
