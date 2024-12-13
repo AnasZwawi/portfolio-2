@@ -36,13 +36,13 @@ export const Testimonials = () => {
       </div>
       <div className="w-full pb-16 md:pb-24 overflow-x-clip">
         <div className="flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex flex-none gap-9 py-4 pr-4 animate-move-left [animation-duration:70s] md:[animation-duration:90s] hover:[animation-play-state:paused]">
+          <div className="flex flex-none gap-9 py-4 pr-4 animate-move-left [animation-duration:30s] md:[animation-duration:90s] hover:[animation-play-state:paused]">
             {[...new Array(2)].fill(0).map((_, index) => (
               <Fragment key={index}>
                 {testimonials.map((testimonial) => (
                   <div
                     key={testimonial.id}
-                    className="p-8 border w-[300px] md:w-[430px] border-gray-300 ring-2 ring-black rounded-lg flex flex-col gap-4 hover:scale-105 duration-300 cursor-default"
+                    className="p-8 border max-w-[300px] md:max-w-[380px] border-gray-300 ring-2 ring-black rounded-lg flex flex-col gap-4 hover:scale-105 duration-300 cursor-default"
                   >
                     <div className="flex gap-4 items-center">
                       <Image
@@ -61,7 +61,7 @@ export const Testimonials = () => {
                         </p>
                       </div>
                     </div>
-                    <p className="text-[17px]">{testimonial.content}</p>
+                    <p className="text-[15px] font-medium text-justify">{testimonial.content}</p>
                   </div>
                 ))}
               </Fragment>

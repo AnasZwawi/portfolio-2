@@ -29,14 +29,14 @@ export const AboutSectionTwo = () => {
           <div className="flex gap-4">
             <Input
               placeholder="Full Name"
-              className="border-2 border-black/80 shadow"
+              className="border-2 rounded-lg border-black/80 shadow"
               name="name"
               type="text"
               required
             />
             <Input
               placeholder="Email"
-              className="border-2 border-black/80 shadow"
+              className="border-2 rounded-lg border-black/80 shadow"
               name="email"
               type="email"
               required
@@ -44,7 +44,7 @@ export const AboutSectionTwo = () => {
           </div>
           <Textarea
             placeholder="Your Message"
-            className="border-2 border-black/80 shadow mt-4 max-h-[150px]"
+            className="border-2 rounded-lg border-black/80 shadow mt-4 max-h-[150px]"
             name="message"
             required
           />

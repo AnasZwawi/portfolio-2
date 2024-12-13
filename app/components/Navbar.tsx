@@ -65,7 +65,7 @@ export const Navbar = () => {
               </Link>
               <Link
                 className="flex gap-1 items-center bg-black rounded-l-full px-5 text-white group relative transition duration-300 py-3"
-                href="#contact"
+                href="/contact"
               >
                 <Mail className="size-5" />
 
@@ -131,7 +131,7 @@ export const Navbar = () => {
               </Link>
               <Link
                 className="flex gap-1 items-center bg-black rounded-full px-5 text-white group relative transition duration-300 py-2.5"
-                href="#contact"
+                href="/contact"
               >
                 <Mail className="w-4 h-4 hidden md:block" />
                 Contact

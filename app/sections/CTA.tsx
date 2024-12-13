@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export const CTA = () => {
@@ -15,7 +16,14 @@ export const CTA = () => {
             discuss how I can help you achieve your goals.
           </p>
         </div>
-        <Button className="bg-white text-black text-[15px] px-5 py-[19px]" variant={'outline'}>Contact Me <Send/></Button>
+        <Button
+          className="bg-white text-black text-[15px] px-5 py-[19px]"
+          variant={"outline"}
+        >
+          <Link href={"/contact"} className="flex items-center gap-1">
+            Contact Me <Send />
+          </Link>
+        </Button>
       </div>
     </div>
   );

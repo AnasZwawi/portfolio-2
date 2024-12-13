@@ -7,7 +7,7 @@ export const Footer = () => {
   return (
     <footer>
       <div className="w-[93%] mx-auto md:max-w-[1000px] mt-4 mb-[5rem] sm:mb-0">
-        <Separator className="bg-black"/>
+        <Separator className="bg-black/90 h-[2px] rounded-full"/>
         <div className="flex justify-between py-4">
           <p className="font-medium">&copy; 2024. All rights reserved.</p>
           <nav className="flex gap-x-2">
