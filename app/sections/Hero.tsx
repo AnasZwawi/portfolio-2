@@ -56,7 +56,7 @@ export const Hero = () => {
         </h1>
         <p className="text-lg font-medium">
           I turn ideas into smooth, responsive, and powerful web applications.
-          Let’s work together to create something incredible!
+          Let&apos;s work together to create something incredible!
         </p>
         <div className="flex space-x-4 mt-3">
           <Button className="px-[22px] py-6 text-[15px] gap-1 rounded-lg ">

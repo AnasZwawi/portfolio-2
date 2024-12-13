@@ -54,7 +54,7 @@ export const AboutSectionTwo = () => {
       <Link href={"https://maps.app.goo.gl/w5qmsUzfLmgdTHy28"} target="_" className="w-full md:w-1/3 border overflow-hidden relative border-gray-300 ring-2 ring-black/80 rounded-lg">
 
         <img src="/place.png" className="w-full h-full object-cover" alt="" />
-        <img src="/me.jpg" className="size-14 animate-pulse absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-2 filter grayscale border-white ring-2 ring-black" alt="" />
+        <img src="/me.jpg" className="size-16 animate-pulse absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-2 filter grayscale border-white ring-2 ring-black" alt="" />
       </Link>
     </div>
   );

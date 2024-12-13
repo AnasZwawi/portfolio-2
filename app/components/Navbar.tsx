@@ -13,16 +13,16 @@ import {
 export const Navbar = () => {
   return (
     <>
-      <div className="sm:hidden fixed right-0 left-0 bottom-[30px] z-50">
+      <div className="sm:hidden fixed right-0 left-0 bottom-[35px] z-50">
         <div className="">
           <nav
             aria-label="Main menu"
             className="pointer-events-auto z-50 flex w-full items-center justify-end"
           >
-            <div className="w-fit flex justify-between items-center -gap-x-1 md:gap-x-1 absolute left-1/2 -translate-x-1/2 rounded-[1.7rem]  bg-white/70 border border-gray/50 pl-3 overflow-hidden text-[15px] font-medium text-gray-800 shadow-lg shadow-gray-800/5 ring-1 ring-black/80 backdrop-blur-md">
+            <div className="w-fit flex justify-between items-center md:gap-x-1 absolute left-1/2 -translate-x-1/2 rounded-[1.7rem]  bg-white/70 border border-gray/50 pl-3 overflow-hidden text-[15px] font-medium text-gray-800 shadow-lg shadow-gray-800/5 ring-1 ring-black/80 backdrop-blur-md">
               <Link
                 href={"/"}
-                className="flex items-center gap-1 group relative transition duration-300 px-3 py-2.5"
+                className="flex items-center gap-1 group relative transition duration-300 px-4 py-2.5"
               >
                 <House className="size-5" />
 
@@ -33,7 +33,7 @@ export const Navbar = () => {
               </Link>
               <Link
                 href={"#projects"}
-                className="flex items-center gap-1 group relative transition duration-300 px-3 py-2.5"
+                className="flex items-center gap-1 group relative transition duration-300 px-4 py-2.5"
               >
                 <BriefcaseBusiness className="size-5" />
 
@@ -44,7 +44,7 @@ export const Navbar = () => {
               </Link>
               <Link
                 href={"/blog"}
-                className="flex items-center gap-1 group relative transition duration-300 px-3 py-2.5"
+                className="flex items-center gap-1 group relative transition duration-300 px-4 py-2.5"
               >
                 <NotebookPen className="size-5" />
                 <span className="absolute inset-x-1 h-px bg-gradient-to-r from-black from-10% via-black/60 to-black/10 to-90% transition duration-300 -bottom-0.5 opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"></span>
@@ -54,7 +54,7 @@ export const Navbar = () => {
               </Link>
               <Link
                 href="#about"
-                className="flex items-center gap-1 group relative transition duration-300 px-3 py-2.5"
+                className="flex items-center gap-1 group relative transition duration-300 px-4 mr-2 py-2.5"
               >
                 <UserRound className="size-5" />
 

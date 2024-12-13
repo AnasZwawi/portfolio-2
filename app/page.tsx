@@ -4,6 +4,8 @@ import { Projects } from "./sections/Projects";
 import { Tape } from "./sections/Tape";
 import { Testimonials } from "./sections/Testimonials";
 import { About } from "./sections/About";
+import { CTA } from "./sections/CTA";
+import { Footer } from "./sections/Footer";
 //mt-12 md:mt-[6rem] w-[93%] mx-auto md:container md:max-w-[1100px]
 export default function Home() {
   return (
@@ -17,6 +19,8 @@ export default function Home() {
         <Tape />
         <Testimonials/>
         <About/>
+        <CTA/>
+        <Footer/>
       </div>
     </div>
   );
