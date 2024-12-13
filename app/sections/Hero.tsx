@@ -63,7 +63,7 @@ export const Hero = () => {
             Explore My Work <ArrowDown />
           </Button>
           <Button className="pl-5 rounded-lg pr-7 py-6 text-[15px]">
-            <span className="text-lg">👋</span>Let's Connect
+            <span className="text-lg">👋</span>Let&apos;s Connect
           </Button>
         </div>
       </div>

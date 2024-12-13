@@ -30,7 +30,7 @@ export const Testimonials = () => {
           What Clients Say About Me
         </h1>
         <p className="font-medium text-center">
-          Don't just take my word for it. See what my clients have to say about
+          Don&apos;t just take my word for it. See what my clients have to say about
           my work.
         </p>
       </div>

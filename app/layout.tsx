@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Navbar } from "./components/Navbar";
-import { Hero } from "./sections/Hero";
 
 const clash = localFont({
   src: "./ClashGrotesk-Variable.woff2",

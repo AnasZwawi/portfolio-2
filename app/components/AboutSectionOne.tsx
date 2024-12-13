@@ -12,7 +12,6 @@ import { Skill } from "../components/Skill";
 import { SiFastapi, SiShadcnui } from "react-icons/si";
 import {
   BiLogoDjango,
-  BiLogoGoLang,
   BiLogoPostgresql,
   BiLogoTypescript,
 } from "react-icons/bi";
