@@ -34,7 +34,7 @@ export const AboutSectionOne = () => {
             <span className="font-black">Who Am I</span>
           </div>
           <div className="mt-4 text-sm font-medium leading-tight text-justify">
-          I'm Anas, a full-stack web developer with expertise in modern web technologies. I focus on building scalable, performant SaaS applications and solving real-world problems.
+          I&apos;m Anas, a full-stack web developer with expertise in modern web technologies. I focus on building scalable, performant SaaS applications and solving real-world problems.
           </div>
         </div>
         <div className="w-full px-6">
