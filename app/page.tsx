@@ -6,6 +6,7 @@ import { Testimonials } from "./sections/Testimonials";
 import { About } from "./sections/About";
 import { CTA } from "./sections/CTA";
 import { Footer } from "./sections/Footer";
+import { Chat } from "./sections/Chat";
 //mt-12 md:mt-[6rem] w-[93%] mx-auto md:container md:max-w-[1100px]
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Testimonials/>
         <About/>
         <CTA/>
+        <Chat/>
         <Footer/>
       </div>
     </div>

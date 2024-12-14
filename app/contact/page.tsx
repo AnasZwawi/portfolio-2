@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, MoveLeft, Send, Sparkle } from "lucide-react";
+import { ArrowLeft, Send, Sparkle } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -63,7 +63,7 @@ const Page = () => {
             action="https://getform.io/f/bqooygxb"
             method="post"
           >
-            <div className="flex gap-6">
+            <div className="flex flex-col sm:flex-row gap-6">
               <Input
                 placeholder="Full Name"
                 className="border-2 rounded-lg border-black/80 shadow"

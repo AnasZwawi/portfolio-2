@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Send } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -21,7 +21,7 @@ export const CTA = () => {
           variant={"outline"}
         >
           <Link href={"/contact"} className="flex items-center gap-1">
-            Contact Me <Send />
+            Contact Me <MoveUpRight strokeWidth={2.5}/>
           </Link>
         </Button>
       </div>
