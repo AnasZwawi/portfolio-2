@@ -45,7 +45,10 @@ const Page = () => {
 
       {/* Contact Form Section */}
       <div className="w-full md:w-[60%] h-full flex items-center justify-center relative">
-        <Link href={"/"} className="absolute top-8 cursor-pointer shadow-lg hover:scale-[1.05] hover:bg-black hover:text-white duration-150 left-8 rounded-lg border border-gray-300 ring-2 ring-black/80 p-[10px]">
+        <Link
+          href={"/"}
+          className="absolute top-8 cursor-pointer shadow-lg hover:scale-[1.05] hover:bg-black hover:text-white duration-150 left-8 rounded-lg border border-gray-300 ring-2 ring-black/80 p-[10px]"
+        >
           <ArrowLeft className="" />
         </Link>
         <div className="w-[600px] h-fit">
@@ -89,6 +92,12 @@ const Page = () => {
               Send Message
               <Send />
             </Button>
+            <div className="text-center mt-6 font-medium">
+              <p>
+                “The way to get started is to quit talking and begin doing.”
+              </p>
+              <h4 className="font-semibold text-[17px]">Walt Disney</h4>
+            </div>
           </form>
         </div>
       </div>

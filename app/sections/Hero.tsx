@@ -60,12 +60,12 @@ export const Hero = () => {
           Let&apos;s work together to create something incredible!
         </p>
         <div className="flex space-x-4 mt-3">
-          <Button className="px-[22px] py-6 text-[15px] gap-1 rounded-lg ">
-            Explore My Work <ArrowDown />
+          <Button className="px-4 sm:px-[22px] py-6 text-[15px] gap-1 rounded-lg ">
+            Explore My Work <ArrowDown strokeWidth={2.5}/>
           </Button>
-          <Button className="pl-5 rounded-lg pr-7 py-6 text-[15px]">
+          <Button className="pl-4 sm:pl-5 rounded-lg pr-5 sm:pr-7 py-6 text-[15px]">
             <Link href={"/contact"}>
-              <span className="text-lg mr-2">👋</span>Let&apos;s Connect
+              <span className="text-lg mr-1 sm:mr-2">👋</span>Let&apos;s Connect
             </Link>
           </Button>
         </div>
