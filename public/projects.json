@@ -9,35 +9,55 @@
         "Intelligent resume ranking",
         "Customizable job criteria",
         "Integration with Supabase",
-        "Django API for text extraction"
+        "Django API for AI model manipulation"
       ],
-      "image_url": "p1.png"
+      "image_url": "jobfitai1.png",
+      "project_url": "https://jobfitai.vercel.app"
     },
     {
       "name": "Propria",
       "id": 2,
       "title": "Legal Services Marketplace",
-      "creation_year": 2023,
+      "creation_year": 2024,
       "features": [
         "Microservices architecture",
         "Next.js and Go-powered platform",
         "5K monthly active users",
-        "Real-time messaging system"
+        "Golang microservice for zipcode mapping"
       ],
-      "image_url": "p2.png"
+      "image_url": "propria2.png",
+      "project_url": "https://propria.us"
+
     },
     {
-      "name": "jobfitAI",
+      "name": "SugarCRM",
       "id": 3,
-      "title": "AI-Powered Resume Screener",
+      "title": "Powerful Automated CRM",
       "creation_year": 2024,
       "features": [
-        "Intelligent resume ranking",
-        "Customizable job criteria",
-        "Integration with Supabase",
-        "Django API for text extraction"
+        "Third-party apps and systems integrations",
+        "Real-time event notifications",
+        "Secure PostgreSQL",
+        "FastAPI for backend logic"
       ],
-      "image_url": "p3.png"
+      "image_url": "p2.png",
+      "project_url": "/"
+
+    },
+    {
+      "name": "Ziplorer",
+      "id": 4,
+      "title": "Zip Code API",
+      "creation_year": 2024,
+      "features": [
+        "Get Zip Code Data",
+        "Get Multiple Zip Codes Data",
+        "Find Zip Codes by City and State",
+        "Calculate Distance Between Two Zip Codes",
+        "Find Zip Codes in a Given Radius (km/miles)"
+      ],
+      "image_url": "",
+      "project_url": "https://rapidapi.com/ziplorer-ziplorer-default/api/ziplorer"
     }
   ]
 }

@@ -1,11 +1,10 @@
 "use client";
-import { CircleAlert, MessageCircle } from "lucide-react";
+import { CircleAlert, MessageCircle, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { marked } from "marked"; // Import marked
 
 export function Chat() {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
-    []
-  );
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -51,12 +50,14 @@ export function Chat() {
     }
   }, [chatOpen]);
 
-
   return (
     <div className="fixed z-50 top-3 left-1/2 transform -translate-x-1/2 sm:bottom-8 sm:top-auto sm:right-8 sm:translate-x-0 flex flex-col-reverse sm:flex-col items-center sm:items-end">
       {chatOpen && (
         <div className="flex flex-col h-[500px] w-[90vw] sm:w-[400px] justify-between bg-gray-100 shadow-md border p-4 rounded-lg">
-          <p className="flex items-start gap-1 mb-2 text-gray-700 text-[13px]"> <CircleAlert className="size-4 relative top-[2px] text-gray-600"/>Please do not share any sensitive information with my assistant.</p>
+          <p className="flex items-start gap-1 mb-2 text-gray-700 text-[13px]">
+            <CircleAlert className="size-4 relative top-[2px] text-gray-600" />
+            Please do not share any sensitive information with my assistant.
+          </p>
           <div className="flex-1 overflow-y-auto bg-white rounded-lg shadow-lg p-4 space-y-4">
             {messages.map((msg, index) => (
               <div
@@ -72,7 +73,13 @@ export function Chat() {
                       : "bg-gray-200 text-gray-900"
                   }`}
                 >
-                  <p className="text-sm">{msg.text}</p>
+                  {/* Parse markdown and render HTML */}
+                  <p
+                    className="text-sm"
+                    dangerouslySetInnerHTML={{
+                      __html: marked(msg.text),
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -106,13 +113,18 @@ export function Chat() {
       )}
       <button
         onClick={() => setChatOpen((value) => !value)}
-        className="cursor-pointer shadow-md bg-black text-white p-5 py-3 min-w-[235px] sm:mt-4 rounded-full flex gap-1 font-medium items-center mb-4 sm:mb-0"
+        className="cursor-pointer shadow-md bg-black text-white sm:mt-4 rounded-full font-medium items-center mb-4 sm:mb-0"
       >
-        <MessageCircle
-          strokeWidth={2.5}
-          className="size-5 relative bottom-[1px]"
-        />{" "}
-        Chat With My Assistant
+        {!chatOpen ? (
+          <div className="min-w-[235px] flex gap-1 p-5 py-3 ">
+            <MessageCircle strokeWidth={2.5} className="size-5 relative bottom-[1px]" />{" "}
+            Chat With My Assistant
+          </div>
+        ) : (
+          <div className="p-3">
+            <X strokeWidth={2.5} />
+          </div>
+        )}
       </button>
     </div>
   );

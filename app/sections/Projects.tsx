@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CircleCheck, Dot, MoveUpRight } from "lucide-react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 interface Project {
@@ -11,6 +12,7 @@ interface Project {
   creation_year: number;
   features: string[];
   image_url: string;
+  project_url: string;
 }
 
 export const Projects = () => {
@@ -24,7 +26,10 @@ export const Projects = () => {
       .catch((error) => console.error("Error fetching projects:", error));
   }, []);
   return (
-    <div id="projects" className="w-[93%] mx-auto md:max-w-[950px] my-[2rem] py-[6rem]">
+    <div
+      id="projects"
+      className="w-[93%] mx-auto md:max-w-[950px] my-[2rem] py-[6rem]"
+    >
       <div className="max-w-[400px] mx-auto mb-[4rem]">
         <div className="rounded-lg bg-black uppercase text-white text-sm w-fit mx-auto px-3 py-1">
           real-world projects
@@ -59,20 +64,24 @@ export const Projects = () => {
                 <ul className="font-medium md:pl-5">
                   {project.features.map((feature, index) => (
                     <li key={index} className="flex items-center gap-2">
-                      <CircleCheck className="w-5"/>
+                      <CircleCheck className="w-5" />
                       {feature}
                     </li>
                   ))}
                 </ul>
-                <Button className="mt-5 text-[15px] px-5 py-[22px] rounded-lg">
-                  View Live Site <MoveUpRight />
-                </Button>
+                <Link href={project.project_url} target="_">
+                  <Button className="mt-5 text-[15px] px-5 py-[22px] rounded-lg">
+                    View Live Site <MoveUpRight />
+                  </Button>
+                </Link>
               </div>
-              <img
-                src={project.image_url}
-                alt={project.title}
-                className="w-auto md:w-[350px] object-cover max-h-[300px] relative -bottom-8 md:absolute md:right-0 md:bottom-0 rounded-t-3xl md:rounded-tr-none ring-2 ring-black/70 shadow-2xl"
-              />
+              {project.image_url && (
+                <img
+                  src={project.image_url}
+                  alt={project.title}
+                  className="w-auto md:w-[350px] object-cover max-h-[300px] relative -bottom-8 md:absolute md:right-0 md:bottom-0 rounded-t-3xl md:rounded-tr-none ring-2 ring-black/70 shadow-2xl"
+                />
+              )}
             </div>
           </div>
         ))}

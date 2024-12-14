@@ -4,22 +4,29 @@
       "name": "Kris L",
       "position": "Founder & CEO of Propria",
       "id": 1,
-      "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, officiis quidem ullam laborum deleniti vel! Earum quia incidunt voluptatibus impedit.",
-      "face_url": "me.jpg"
+      "content": "I am grateful to be working with Anas.",
+      "face_url": "kris.webp"
+    },
+    {
+      "name": "Fabian Bogun",
+      "position": "Team Manager at SugarCRM",
+      "id": 2,
+      "content": "Anas is a talented developer. He understood my requirements and delivered a scalable solution that has greatly improved our workflow.",
+      "face_url": "fabian.png"
     },
     {
       "name": "Kris L",
       "position": "Founder & CEO of Propria",
-      "id": 1,
-      "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, officiis quidem ullam laborum deleniti vel! Earum quia incidunt voluptatibus impedit.",
-      "face_url": "me.jpg"
+      "id": 3,
+      "content": "I am grateful to be working with Anas.",
+      "face_url": "kris.webp"
     },
     {
-      "name": "Kris L",
-      "position": "Founder & CEO of Propria",
-      "id": 1,
-      "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, officiis quidem ullam laborum deleniti vel! Earum quia incidunt voluptatibus impedit.",
-      "face_url": "me.jpg"
+      "name": "Fabian Bogun",
+      "position": "eam Manager at SugarCRM",
+      "id": 4,
+      "content": "Anas is a talented developer. He understood my requirements and delivered a scalable solution that has greatly improved our workflow.",
+      "face_url": "fabian.png"
     }
   ]
 }
