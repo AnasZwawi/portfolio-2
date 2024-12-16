@@ -1,11 +1,11 @@
 // components/BlogPost.tsx (Client-Side)
 "use client";
 
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import React from "react";
 
 interface BlogPostProps {
-  serializedContent: any;
+  serializedContent: MDXRemoteSerializeResult;
 }
 
 const BlogPost: React.FC<BlogPostProps> = ({ serializedContent }) => {

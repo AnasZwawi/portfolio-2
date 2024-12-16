@@ -13,7 +13,7 @@ const fetchLikesData = () => {
     const fileContents = fs.readFileSync(path.join(process.cwd(), "data", "likes.json"), "utf8");
     return JSON.parse(fileContents);
   } catch (error) {
-    return {}; // Return an empty object if no likes file is found
+    return {error}; // Return an empty object if no likes file is found
   }
 };
 

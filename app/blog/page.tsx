@@ -11,7 +11,7 @@ import { SubscribeForm } from "../components/SubscribeForm";
 
 const POSTS_PATH = path.join(process.cwd(), "content/posts");
 
-const fetchLikesData = (slug: string) => {
+const fetchLikesData = () => {
   try {
     const fileContents = mm.readFileSync(
       path.join(process.cwd(), "data", "likes.json"),
@@ -19,7 +19,7 @@ const fetchLikesData = (slug: string) => {
     );
     return JSON.parse(fileContents);
   } catch (error) {
-    return {}; // Return an empty object if no likes file is found
+    return {error}; // Return an empty object if no likes file is found
   }
 };
 
@@ -33,7 +33,7 @@ export default async function BlogPage() {
       const { data: frontMatter } = matter(fileContents);
 
       const slug = filename.replace(".mdx", "");
-      const likesData = fetchLikesData(slug);
+      const likesData = fetchLikesData();
       const initialLikes = likesData[slug]?.likes || 0; // Fetch likes for each post
 
       return {
@@ -65,7 +65,7 @@ export default async function BlogPage() {
             Welcome to My Blog!{" "}
           </h1>
           <p className="font-medium text-center">
-            Hi, I'm Anas! Welcome to my blog where I share insights, tutorials,
+            Hi, I&apos;m Anas! Welcome to my blog where I share insights, tutorials,
             and tips on web development, full-stack programming, and my journey
             as a developer.
           </p>
