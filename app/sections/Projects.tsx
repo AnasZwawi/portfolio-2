@@ -20,7 +20,7 @@ export const Projects = () => {
 
   useEffect(() => {
     // Fetch the data from the external JSON file
-    fetch("/projects.json")
+    fetch("/data/projects.json")
       .then((response) => response.json())
       .then((data) => setProjects(data.projects))
       .catch((error) => console.error("Error fetching projects:", error));

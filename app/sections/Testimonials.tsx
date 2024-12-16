@@ -15,7 +15,7 @@ export const Testimonials = () => {
 
   useEffect(() => {
     // Fetch the data from the external JSON file
-    fetch("/testimonials.json")
+    fetch("/data/testimonials.json")
       .then((response) => response.json())
       .then((data) => setTestimonials(data.testimonials))
       .catch((error) => console.error("Error fetching testimonials:", error));

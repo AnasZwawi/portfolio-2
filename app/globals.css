@@ -76,3 +76,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+strong {
+  font-weight: 500;
+}
+
+.translate-right-to-center {
+  transition: transform 0.5s ease-out;
+  transform: translateX(100vw);
+}
+
+.translate-center {
+  transform: translateX(-50%);
+}

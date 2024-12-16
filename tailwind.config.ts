@@ -62,8 +62,17 @@ const config: Config = {
         "spin-slow": "spin-slow 5s linear infinite",
         "move-left": "move-left 25s linear infinite",
         float: "float 4s ease-in-out infinite",
+        "translate-right-to-center": "translate-right-to-center 1s ease-out",
       },
       keyframes: {
+        "translate-right-to-center": {
+          "0%": {
+            transform: "translateX(100vw)", // Start off-screen
+          },
+          "100%": {
+            transform: "translateX(-50%)", // End in the center
+          },
+        },
         "ping-large": {
           "75%, 100%": {
             transform: "scale(3)",

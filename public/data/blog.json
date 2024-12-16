@@ -1,0 +1,22 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "How I Built My Portfolios",
+      "slug": "how-i-built-my-portfolio",
+      "content": "Building a portfolio is a great way to showcase your skills and projects. Here's how I built mine using **Next.js** and some additional tools.\n\n### The Tech Stack\nFor my portfolio, I chose Next.js as the main framework because it provides **server-side rendering (SSR)** and **static site generation (SSG)**, which are perfect for SEO and performance.\n\n- **React** for building components\n- **Tailwind CSS** for styling\n- **Vercel** for deployment\n\n### Key Features\nThe portfolio includes:\n\n- **Project showcase** with live demos\n- **Blog** where I share my development journey\n- **Contact form** to get in touch\n\n### Key Lessons Learned\nThroughout this project, I learned the importance of **responsive design** and **SEO optimization**.\n\nCheck out my portfolio at [my website](https://anasportfolio.com) for more details.",
+      "author": "Anas",
+      "publishedDate": "2024-12-16",
+      "tags": ["Next.js", "Portfolio", "Development"]
+    },
+    {
+      "id": 2,
+      "title": "5 Tips for Learning Full-Stack Development",
+      "slug": "tips-for-fullstack-development",
+      "content": "Full-stack development can be challenging, but here are 5 tips to make it easier:\n\n1. **Start with the basics** – Ensure you have a solid understanding of HTML, CSS, and JavaScript.\n2. **Learn a back-end language** – Node.js, Python, or Go are good choices to start building server-side applications.\n3. **Understand databases** – Learn how to interact with both relational (Postgres) and NoSQL (MongoDB) databases.\n4. **Practice with real-world projects** – Build full-stack applications like a **blog**, a **chat app**, or an **e-commerce site**.\n5. **Stay up-to-date** – Follow blogs and [tutorials](https://dev.to/) to stay current with the latest in full-stack development.\n\nThese tips will help you streamline your learning process and stay motivated!",
+      "author": "Anas",
+      "publishedDate": "2024-12-10",
+      "tags": ["Full-Stack", "Learning", "Tips"]
+    }
+  ]
+}
