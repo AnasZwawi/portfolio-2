@@ -2,14 +2,11 @@
 
 import { fetchPostData } from "@/lib/fetchPostData";
 import dynamic from "next/dynamic";
-import LikeButton from "@/app/components/LikeButton";
-import { Navbar } from "@/app/components/Navbar";
 import { BlogSidebar } from "@/app/components/BlogSidebar";
 import Link from "next/link";
 import { RiGithubFill, RiInstagramFill, RiTwitterXFill } from "react-icons/ri";
 import { Karla } from "next/font/google";
 import { Separator } from "@/components/ui/separator";
-import { Footer } from "@/app/sections/Footer";
 
 const karla = Karla({ subsets: ["latin"] });
 

@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote";
 import React from "react";
 
 interface BlogPostProps {
-  serializedContent: any; // Define the type for serialized content
+  serializedContent: any;
 }
 
 const BlogPost: React.FC<BlogPostProps> = ({ serializedContent }) => {

@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { useEffect } from "react";
 
-export function SubmitEmail({ email }: { email: string }) {
+export function SubmitEmail() {
   const { pending } = useFormStatus();
 
   useEffect(() => {

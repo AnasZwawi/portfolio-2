@@ -22,7 +22,7 @@ export const SubscribeForm = () => {
           onChange={(e) => setEmail(e.target.value)} // Correcting here
         />
 
-        <SubmitEmail email={email}/>
+        <SubmitEmail/>
       </form>
     </div>
   );

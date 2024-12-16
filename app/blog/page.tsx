@@ -1,8 +1,5 @@
 import Link from "next/link";
 import { Navbar } from "../components/Navbar";
-import { Input } from "@/components/ui/input";
-import { addToBrevoList } from "../actions";
-import { SubmitEmail } from "../components/SubscribeButton";
 import { Toaster } from "@/components/ui/sonner";
 import { Separator } from "@/components/ui/separator";
 import fs from "fs/promises";
