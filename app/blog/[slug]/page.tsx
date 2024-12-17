@@ -7,18 +7,55 @@ import { Karla } from "next/font/google";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { cache, memo } from "react";
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { LazyLoadImageBlogPost } from "@/app/components/LazyLoader";
 
 const karla = Karla({ subsets: ["latin"] });
+
+type PostData = {
+  frontMatter: {
+    author: string;
+    authorPhoto: string;
+    date: string;
+    coverPhoto: string;
+    title: string;
+    description: string;
+    categories?: string[];
+    slug: string;
+  };
+  serializedContent: MDXRemoteSerializeResult;
+  initialLikes: number;
+};
 
 // Dynamically import the client-side MDX component (already optimized)
 const BlogPost = dynamic(() => import("@/app/components/BlogPost"), {
   ssr: false,
 });
 
-const cachedFetchPostData = cache(async (slug: string) => {
-  return await fetchPostData(slug);
+const cacheExpirationTime = 60 * 60 * 1000; // 1 hour in milliseconds
+const postCache: { [slug: string]: { data: PostData; timestamp: number } } = {};
+
+const cachedFetchPostData = cache(async (slug: string): Promise<PostData> => {
+  const currentTime = Date.now();
+
+  // Check if the post is cached and valid
+  if (
+    postCache[slug] &&
+    currentTime - postCache[slug].timestamp < cacheExpirationTime
+  ) {
+    return postCache[slug].data; // Return the cached post data
+  }
+
+  // Fetch the post data if it's not cached or cache has expired
+  const postData = await fetchPostData(slug);
+
+  // Cache the post data with the current timestamp
+  postCache[slug] = { data: postData, timestamp: currentTime };
+
+  return postData;
 });
+
+
 
 export default async function BlogPage({
   params,
