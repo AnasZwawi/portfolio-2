@@ -121,5 +121,3 @@ const SocialLinks = memo(() => (
 
 // Add displayName to resolve the ESLint error
 SocialLinks.displayName = "SocialLinks";
-
-export { SocialLinks };
