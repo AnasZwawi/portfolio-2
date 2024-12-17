@@ -11,15 +11,17 @@ import { SubscribeForm } from "../components/SubscribeForm";
 
 const POSTS_PATH = path.join(process.cwd(), "content/posts");
 
-const fetchLikesData = () => {
+const fetchLikesData = async (slug: string) => {
   try {
-    const fileContents = mm.readFileSync(
-      path.join(process.cwd(), "data", "likes.json"),
-      "utf8"
-    );
-    return JSON.parse(fileContents);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes/${slug}`);
+    if (!response.ok) {
+      throw new Error(`Error fetching likes for slug: ${slug}`);
+    }
+    const data = await response.json();
+    return data.likes || 0; // Return likes or 0 if no data exists
   } catch (error) {
-    return {error}; // Return an empty object if no likes file is found
+    console.error("Error fetching likes data:", error);
+    return 0; // Default to 0 likes on error
   }
 };
 
@@ -33,8 +35,8 @@ export default async function BlogPage() {
       const { data: frontMatter } = matter(fileContents);
 
       const slug = filename.replace(".mdx", "");
-      const likesData = fetchLikesData();
-      const initialLikes = likesData[slug]?.likes || 0; // Fetch likes for each post
+      const likesData = await fetchLikesData(slug);
+      const initialLikes = likesData; // Fetch likes for each post
 
       return {
         slug,
@@ -44,7 +46,7 @@ export default async function BlogPage() {
         description: frontMatter.description,
         authorPhoto: frontMatter.authorPhoto,
         coverPhoto: frontMatter.coverPhoto,
-        initialLikes, // Include the likes data in the post
+        initialLikes,
       };
     })
   );

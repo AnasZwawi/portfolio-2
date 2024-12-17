@@ -1,36 +1,53 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { Client } from "pg";
 
-// Define the file path where likes data is stored
-const getLikesFilePath = () => path.join(process.cwd(), "data", "likes.json");
+// Initialize PostgreSQL client to connect to Neon
+const client = new Client({
+  connectionString: process.env.NEON_DB_URL, // Use your Neon database URL
+});
 
-// Fetch the likes data from a JSON file
-const fetchLikesData = () => {
-  const filePath = getLikesFilePath();
+client.connect();
+
+// Fetch likes data from Neon database
+const fetchLikesData = async (slug: string) => {
   try {
-    // Create the file if it doesn't exist
-    if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, JSON.stringify({})); // Create an empty file
+    // Query the database for likes data for the specific post
+    const result = await client.query(
+      `SELECT likes FROM likes WHERE slug = $1`,
+      [slug]
+    );
+
+    if (result.rows.length > 0) {
+      return result.rows[0].likes; // Return the likes count
     }
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    return JSON.parse(fileContents);
+
+    // If no likes data exists, return 0
+    return 0;
   } catch (error) {
-    console.error("Error reading likes data:", error);
-    return {}; // Return an empty object if no likes file is found
+    console.error("Error fetching likes data:", error);
+    return 0; // Default to 0 if there's an error
   }
 };
 
-// Update the likes data in the JSON file
-const updateLikesData = (slug: string, likes: number) => {
-  const likesData = fetchLikesData();
-  likesData[slug] = { likes };
+// Update likes data in Neon database
+const updateLikesData = async (slug: string, likes: number) => {
+  try {
+    // Insert or update the likes count for the post in the database
+    const result = await client.query(
+      `INSERT INTO likes (slug, likes) VALUES ($1, $2) 
+      ON CONFLICT (slug) 
+      DO UPDATE SET likes = $2 RETURNING likes`,
+      [slug, likes]
+    );
 
-  fs.writeFileSync(getLikesFilePath(), JSON.stringify(likesData, null, 2));
-  return likesData;
+    return result.rows[0].likes; // Return the updated likes count
+  } catch (error) {
+    console.error("Error updating likes data:", error);
+    return likes; // Return the current likes if there's an error
+  }
 };
 
-// Handle GET and POST requests for likes
+// Handle GET requests for likes
 export async function GET(req: Request, { params }: { params: { slug: string } }) {
   const { slug } = params;
 
@@ -39,11 +56,12 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
     return NextResponse.json({ error: "Slug is missing" }, { status: 400 });
   }
 
-  const likesData = fetchLikesData();
-  const initialLikes = likesData[slug]?.likes || 0; // Default to 0 if no likes data exists for this post
+  // Fetch likes data from the Neon database
+  const initialLikes = await fetchLikesData(slug);
   return NextResponse.json({ likes: initialLikes });
 }
 
+// Handle POST requests to update likes
 export async function POST(req: Request, { params }: { params: { slug: string } }) {
   const { slug } = params;
 
@@ -60,14 +78,13 @@ export async function POST(req: Request, { params }: { params: { slug: string } 
   }
 
   // Fetch the current likes data
-  const likesData = fetchLikesData();
-  const currentLikes = likesData[slug]?.likes || 0;
+  const currentLikes = await fetchLikesData(slug);
 
   // Update likes based on the action
   const updatedLikes = action === "like" ? currentLikes + 1 : currentLikes - 1;
 
-  // Update the likes data and write it back to the JSON file
-  const updatedData = updateLikesData(slug, updatedLikes);
+  // Update the likes data in the Neon database
+  const updatedLikesCount = await updateLikesData(slug, updatedLikes);
 
-  return NextResponse.json({ likes: updatedData[slug].likes });
+  return NextResponse.json({ likes: updatedLikesCount });
 }
