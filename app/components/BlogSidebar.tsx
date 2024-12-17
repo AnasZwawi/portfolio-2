@@ -11,7 +11,7 @@ export const BlogSidebar = ({
   initialLikes: number;
 }) => {
   return (
-    <div className="w-full md:w-fit fixed left-0 p-4 bottom-0 md:top-[4.5rem] md:bottom-auto backdrop-blur-md  bg-white/40 md:backdrop-blur-none md:bg-transparent  md:left-4 border-t-2 border-black/70 md:border-none">
+    <div className="w-full md:w-fit fixed left-0 p-4 bottom-0 md:top-[3.2rem] md:bottom-auto backdrop-blur-md  bg-white/40 md:backdrop-blur-none md:bg-transparent  md:left-4 md:border-none">
       <div className="flex md:flex-col gap-4 justify-between items-center md:items-start">
         <Link
           href={"/blog"}

@@ -18,7 +18,7 @@ export const LazyLoadImage = ({ src, alt }: { src: string; alt: string }) => {
           height={250}
           width={400}
           priority={false}
-          onLoadingComplete={() => setIsLoaded(true)} // Handle image load completion
+          onLoad={() => setIsLoaded(true)} // Handle image load completion
         />
       </div>
     </>
@@ -52,7 +52,7 @@ export const LazyLoadImageBlogPost = ({
         width={width}
         objectFit="cover"
         loading="lazy" // Enable lazy loading for the image
-        onLoadingComplete={() => setIsLoaded(true)} // Set loaded state to true when the image is loaded
+        onLoad={() => setIsLoaded(true)} // Set loaded state to true when the image is loaded
       />
     </>
   );
