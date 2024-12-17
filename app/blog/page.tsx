@@ -7,7 +7,7 @@ import path from "path";
 import matter from "gray-matter";
 import { Heart } from "lucide-react";
 import { SubscribeForm } from "../components/SubscribeForm";
-import { fetchLikesPerPost, fetchPostData } from "@/lib/fetchPostData";
+import { fetchLikesPerPost } from "@/lib/fetchPostData";
 
 const POSTS_PATH = path.join(process.cwd(), "content/posts");
 
