@@ -10,12 +10,17 @@ import Image from "next/image";
 import { fetchLikesPerPost } from "@/lib/fetchPostData";
 import Link from 'next/link';
 import { LazyLoadImage } from "../components/LazyLoader";
+import { cache } from "react";
 
 const POSTS_PATH = path.join(process.cwd(), "content/posts");
 
-export default async function BlogPage() {
-  const filenames = await fs.readdir(POSTS_PATH);
+// Cache the likes fetch to avoid redundant calls
+const cachedFetchLikesPerPost = cache(async (slug: string) => {
+  return await fetchLikesPerPost(slug);
+});
 
+async function getPostsWithLikes(filenames: string[]) {
+  // Fetch the posts data
   const posts = await Promise.all(
     filenames.map(async (filename) => {
       const filePath = path.join(POSTS_PATH, filename);
@@ -35,15 +40,23 @@ export default async function BlogPage() {
     })
   );
 
+  // Fetch likes data with caching for each post slug
   const likesData = await Promise.all(
-    posts.map((post) => fetchLikesPerPost(post.slug))
+    posts.map((post) => cachedFetchLikesPerPost(post.slug)) // Use cached version of fetchLikesPerPost
   );
 
+  // Merge posts with their respective likes data
   const postsWithLikes = posts.map((post, index) => ({
     ...post,
-    initialLikes: likesData[index].initialLikes,
+    initialLikes: likesData[index].initialLikes, // Add initialLikes to each post
   }));
 
+  return postsWithLikes;
+}
+
+export default async function BlogPage() {
+  const filenames = await fs.readdir(POSTS_PATH);
+  const postsWithLikes = await getPostsWithLikes(filenames);
   return (
     <div>
       <Navbar />
