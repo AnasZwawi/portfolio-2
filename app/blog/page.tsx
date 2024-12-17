@@ -7,22 +7,9 @@ import path from "path";
 import matter from "gray-matter";
 import { Heart } from "lucide-react";
 import { SubscribeForm } from "../components/SubscribeForm";
+import { fetchLikesPerPost, fetchPostData } from "@/lib/fetchPostData";
 
 const POSTS_PATH = path.join(process.cwd(), "content/posts");
-
-const fetchLikesData = async (slug: string) => {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes/${slug}`);
-    if (!response.ok) {
-      throw new Error(`Error fetching likes for slug: ${slug}`);
-    }
-    const data = await response.json();
-    return data.likes || 0; // Return likes or 0 if no data exists
-  } catch (error) {
-    console.error("Error fetching likes data:", error);
-    return 0; // Default to 0 likes on error
-  }
-};
 
 export default async function BlogPage() {
   const filenames = await fs.readdir(POSTS_PATH);
@@ -34,9 +21,6 @@ export default async function BlogPage() {
       const { data: frontMatter } = matter(fileContents);
 
       const slug = filename.replace(".mdx", "");
-      const likesData = await fetchLikesData(slug);
-      const initialLikes = likesData; // Fetch likes for each post
-
       return {
         slug,
         title: frontMatter.title,
@@ -45,10 +29,20 @@ export default async function BlogPage() {
         description: frontMatter.description,
         authorPhoto: frontMatter.authorPhoto,
         coverPhoto: frontMatter.coverPhoto,
-        initialLikes,
       };
     })
   );
+
+  // Fetch likes for all posts in parallel
+  const likesData = await Promise.all(
+    posts.map((post) => fetchLikesPerPost(post.slug))
+  );
+
+  // Combine posts and likes
+  const postsWithLikes = posts.map((post, index) => ({
+    ...post,
+    initialLikes: likesData[index].initialLikes,
+  }));
 
   return (
     <div>
@@ -66,16 +60,16 @@ export default async function BlogPage() {
             Welcome to My Blog!{" "}
           </h1>
           <p className="font-medium text-center">
-            Hi, I&apos;m Anas! Welcome to my blog where I share insights, tutorials,
-            and tips on web development, full-stack programming, and my journey
-            as a developer.
+            Hi, I&apos;m Anas! Welcome to my blog where I share insights,
+            tutorials, and tips on web development, full-stack programming, and
+            my journey as a developer.
           </p>
-          <SubscribeForm/>
+          <SubscribeForm />
         </div>
         <Separator className="mb-[2rem] bg-black h-[2px] rounded-full" />
         <div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {posts.map((post) => (
+            {postsWithLikes.map((post) => (
               <div key={post.slug} className="overflow-clip rounded-lg">
                 <Link href={`/blog/${post.slug}`} className="">
                   <img

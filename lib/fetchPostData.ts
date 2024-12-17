@@ -52,3 +52,11 @@ export async function fetchPostData(slug: string) {
 
   return { frontMatter, serializedContent, initialLikes };
 }
+
+export async function fetchLikesPerPost(slug: string) {
+
+  // Fetch likes data from the Neon database
+  const initialLikes = await fetchLikesData(slug); // Use async function to fetch likes
+
+  return { initialLikes };
+}

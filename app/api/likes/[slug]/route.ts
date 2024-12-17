@@ -1,28 +1,21 @@
+"use server"
 import { NextResponse } from "next/server";
-import { Client } from "pg";
+import { Pool } from "pg";
 
-// Initialize PostgreSQL client to connect to Neon
-const client = new Client({
+// Initialize a connection pool
+const pool = new Pool({
   connectionString: process.env.NEON_DB_URL, // Use your Neon database URL
 });
-
-client.connect();
 
 // Fetch likes data from Neon database
 const fetchLikesData = async (slug: string) => {
   try {
-    // Query the database for likes data for the specific post
-    const result = await client.query(
-      `SELECT likes FROM likes WHERE slug = $1`,
-      [slug]
-    );
-
-    if (result.rows.length > 0) {
-      return result.rows[0].likes; // Return the likes count
-    }
-
-    // If no likes data exists, return 0
-    return 0;
+    const client = await pool.connect(); // Get a client from the pool
+    const result = await client.query(`SELECT likes FROM likes WHERE slug = $1`, [slug]);
+    client.release(); // Release the client back to the pool
+    console.log(result.rows[0].likes)
+    console.log("hello")
+    return result.rows.length > 0 ? result.rows[0].likes : 0;
   } catch (error) {
     console.error("Error fetching likes data:", error);
     return 0; // Default to 0 if there's an error
@@ -32,20 +25,22 @@ const fetchLikesData = async (slug: string) => {
 // Update likes data in Neon database
 const updateLikesData = async (slug: string, likes: number) => {
   try {
-    // Insert or update the likes count for the post in the database
+    const client = await pool.connect(); // Get a client from the pool
     const result = await client.query(
       `INSERT INTO likes (slug, likes) VALUES ($1, $2) 
       ON CONFLICT (slug) 
       DO UPDATE SET likes = $2 RETURNING likes`,
       [slug, likes]
     );
+    client.release(); // Release the client back to the pool
 
-    return result.rows[0].likes; // Return the updated likes count
+    return result.rows[0].likes;
   } catch (error) {
     console.error("Error updating likes data:", error);
-    return likes; // Return the current likes if there's an error
+    return likes;
   }
 };
+
 
 // Handle GET requests for likes
 export async function GET(req: Request, { params }: { params: { slug: string } }) {
