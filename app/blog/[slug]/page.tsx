@@ -24,9 +24,11 @@ export default async function BlogPage({
   const { slug } = params;
 
   // Fetch the post data (frontmatter, content) and likes from the server
-  const { frontMatter, serializedContent, initialLikes } = await fetchPostData(
+  const { frontMatter, serializedContent } = await fetchPostData(
     slug
   );
+
+  const initialLikes=0
 
   return (
     <>

@@ -48,9 +48,9 @@ export async function fetchPostData(slug: string) {
   const serializedContent = await serialize(content);
 
   // Fetch likes data from the Neon database
-  const initialLikes = await fetchLikesData(slug); // Use async function to fetch likes
+  // Use async function to fetch likes
 
-  return { frontMatter, serializedContent, initialLikes };
+  return { frontMatter, serializedContent };
 }
 
 export async function fetchLikesPerPost(slug: string) {
