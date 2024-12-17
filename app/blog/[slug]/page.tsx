@@ -27,8 +27,7 @@ export default async function BlogPage({
 }) {
   const { slug } = params;
 
-  const post = await cachedFetchPostData(slug);
-  const { frontMatter, serializedContent, initialLikes } = post;
+  const { frontMatter, serializedContent, initialLikes } = await cachedFetchPostData(slug);
 
   return (
     <>

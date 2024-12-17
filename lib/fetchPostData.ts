@@ -36,32 +36,37 @@ const fetchLikesData = async (slug: string) => {
   }
 };
 
-// Fetch post data
-const postDataCache: { [key: string]: any } = {};
+const cacheExpirationTime = 60 * 60 * 1000; // 1 hour in milliseconds
+const postCache: { [slug: string]: { frontMatter: any; serializedContent: any; initialLikes: any; timestamp: number } } = {};
 
 export async function fetchPostData(slug: string) {
-  // Check if data is already cached
-  if (postDataCache[slug]) {
-    return postDataCache[slug];
+  const currentTime = Date.now();
+
+  // Check if the post is cached and valid
+  if (
+    postCache[slug] &&
+    currentTime - postCache[slug].timestamp < cacheExpirationTime
+  ) {
+    // Return the cached data if it is still valid
+    return {
+      frontMatter: postCache[slug].frontMatter,
+      serializedContent: postCache[slug].serializedContent,
+      initialLikes: postCache[slug].initialLikes,
+    };
   }
 
+  // Fetch the post data if it's not cached or cache has expired
   const filePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, "utf8");
 
-  // Parse the frontmatter and content using gray-matter
   const { data: frontMatter, content } = matter(fileContents);
-
-  // Serialize the MDX content
   const serializedContent = await serialize(content);
+  const initialLikes = await fetchLikesData(slug);
 
-  // Fetch likes data from the Neon database
-  const initialLikes = await fetchLikesData(slug); // Use async function to fetch likes
+  // Cache the post data with a timestamp
+  postCache[slug] = { frontMatter, serializedContent, initialLikes, timestamp: currentTime };
 
-  // Store the data in the cache
-  const postData = { frontMatter, serializedContent, initialLikes };
-  postDataCache[slug] = postData;
-
-  return postData;
+  return { frontMatter, serializedContent, initialLikes };
 }
 
 
