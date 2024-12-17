@@ -105,7 +105,6 @@ export default async function BlogPage({
   );
 }
 
-// Memoize the social media links to prevent unnecessary re-renders
 const SocialLinks = memo(() => (
   <nav className="flex gap-x-2 relative top-1">
     <Link href={"https://github.com/AnasZwawi"} target="_blank">
@@ -119,3 +118,8 @@ const SocialLinks = memo(() => (
     </Link>
   </nav>
 ));
+
+// Add displayName to resolve the ESLint error
+SocialLinks.displayName = "SocialLinks";
+
+export { SocialLinks };
