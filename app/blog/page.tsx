@@ -3,7 +3,6 @@ import { Navbar } from "../components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { Separator } from "@/components/ui/separator";
 import fs from "fs/promises";
-import * as mm from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { Heart } from "lucide-react";
