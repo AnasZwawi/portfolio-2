@@ -61,7 +61,7 @@ export const Hero = () => {
         </p>
         <div className="flex space-x-4 mt-3">
           <Button className="px-4 sm:px-[22px] py-6 text-[15px] gap-1 rounded-lg ">
-            <Link href={"#projects"}>
+            <Link href={"#projects"} className="flex gap-1 items-center">
             Explore My Work <ArrowDown strokeWidth={2.5} /></Link>
           </Button>
           <Button className="pl-4 sm:pl-5 rounded-lg pr-5 sm:pr-7 py-6 text-[15px]">
