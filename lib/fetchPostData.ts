@@ -1,8 +1,10 @@
 // utils/fetchPostData.ts
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
+import matter from "gray-matter"
+import {GrayMatterFile} from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { Client } from "pg";
 
 // Define the path to the posts
@@ -36,10 +38,36 @@ const fetchLikesData = async (slug: string) => {
   }
 };
 
-const cacheExpirationTime = 60 * 60 * 1000; // 1 hour in milliseconds
-const postCache: { [slug: string]: { frontMatter: any; serializedContent: any; initialLikes: any; timestamp: number } } = {};
+interface FrontMatter {
+  title: string;
+  author: string;
+  authorPhoto: string;
+  date: string;
+  coverPhoto: string;
+  description: string;
+  categories?: string[];
+  slug: string;
+}
 
-export async function fetchPostData(slug: string) {
+interface PostCacheEntry {
+  frontMatter: FrontMatter;
+  serializedContent: MDXRemoteSerializeResult;
+  initialLikes: number;
+  timestamp: number;
+}
+
+// Cache expiration time (1 hour)
+const cacheExpirationTime = 60 * 60 * 1000; // 1 hour in milliseconds
+
+// Define the type for the postCache
+const postCache: { [slug: string]: PostCacheEntry } = {};
+
+// Function to fetch the post data
+export async function fetchPostData(slug: string): Promise<{
+  frontMatter: FrontMatter;
+  serializedContent: MDXRemoteSerializeResult;
+  initialLikes: number;
+}> {
   const currentTime = Date.now();
 
   // Check if the post is cached and valid
@@ -57,18 +85,27 @@ export async function fetchPostData(slug: string) {
 
   // Fetch the post data if it's not cached or cache has expired
   const filePath = path.join(POSTS_PATH, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, "utf8");
+  const fileContents = fs.readFileSync(filePath, 'utf8');
 
-  const { data: frontMatter, content } = matter(fileContents);
+  // Cast the result of matter to ensure correct type for frontMatter
+  const { data: frontMatter, content } = matter(fileContents) as GrayMatterFile<string>;
+  
+  // Narrow the type of frontMatter to FrontMatter
+  const typedFrontMatter = frontMatter as FrontMatter;
+
   const serializedContent = await serialize(content);
   const initialLikes = await fetchLikesData(slug);
 
   // Cache the post data with a timestamp
-  postCache[slug] = { frontMatter, serializedContent, initialLikes, timestamp: currentTime };
+  postCache[slug] = {
+    frontMatter: typedFrontMatter,
+    serializedContent,
+    initialLikes,
+    timestamp: currentTime,
+  };
 
-  return { frontMatter, serializedContent, initialLikes };
+  return { frontMatter: typedFrontMatter, serializedContent, initialLikes };
 }
-
 
 export async function fetchLikesPerPost(slug: string) {
 
