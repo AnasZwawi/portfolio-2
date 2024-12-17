@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Navbar } from "../components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { Separator } from "@/components/ui/separator";
@@ -7,7 +6,10 @@ import path from "path";
 import matter from "gray-matter";
 import { Heart } from "lucide-react";
 import { SubscribeForm } from "../components/SubscribeForm";
+import Image from "next/image";
 import { fetchLikesPerPost } from "@/lib/fetchPostData";
+import Link from 'next/link';
+import { LazyLoadImage } from "../components/LazyLoader";
 
 const POSTS_PATH = path.join(process.cwd(), "content/posts");
 
@@ -33,12 +35,10 @@ export default async function BlogPage() {
     })
   );
 
-  // Fetch likes for all posts in parallel
   const likesData = await Promise.all(
     posts.map((post) => fetchLikesPerPost(post.slug))
   );
 
-  // Combine posts and likes
   const postsWithLikes = posts.map((post, index) => ({
     ...post,
     initialLikes: likesData[index].initialLikes,
@@ -54,10 +54,10 @@ export default async function BlogPage() {
       >
         <div className="max-w-[600px] mx-auto mb-[4rem]">
           <div className="rounded-lg bg-black uppercase text-white text-sm w-fit mx-auto px-3 py-1">
-            BLOG{" "}
+            BLOG
           </div>
           <h1 className="text-[28px] md:text-[35px] uppercase font-black text-center mt-2 mb-1">
-            Welcome to My Blog!{" "}
+            Welcome to My Blog!
           </h1>
           <p className="font-medium text-center">
             Hi, I&apos;m Anas! Welcome to my blog where I share insights,
@@ -71,28 +71,32 @@ export default async function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {postsWithLikes.map((post) => (
               <div key={post.slug} className="overflow-clip rounded-lg">
-                <Link href={`/blog/${post.slug}`} className="">
-                  <img
-                    src={post.coverPhoto}
-                    className="w-full rounded-xl h-[250px] object-cover"
-                  />
+                <Link href={`/blog/${post.slug}`}>
                   <div>
-                    <div className="font-medium flex justify-between mt-3">
-                      <p className="text-[15px]">{post.date}</p>
-                      <p className="flex items-center text-[13px] gap-[2px]">
-                        <Heart className="size-[15px]" fill="black" />
-                        <span>{post.initialLikes}</span>
-                      </p>
+                    {/* Image with Lazy Loading and Skeleton */}
+                    <div className="relative w-full h-[250px] rounded-xl">
+                      <LazyLoadImage src={post.coverPhoto} alt={post.title} />
                     </div>
-                    <h2 className="text-[19px] font-medium">{post.title}</h2>
-                    <p className="line-clamp-2">{post.description}</p>
-                    <div className="flex items-center gap-1 mt-3">
-                      <img
-                        src={post.authorPhoto}
-                        className="size-6 rounded-full"
-                        alt=""
-                      />
-                      <p className="font-medium">{post.author}</p>
+                    <div>
+                      <div className="font-medium flex justify-between mt-3">
+                        <p className="text-[15px]">{post.date}</p>
+                        <p className="flex items-center text-[13px] gap-[2px]">
+                          <Heart className="size-[15px]" fill="black" />
+                          <span>{post.initialLikes}</span>
+                        </p>
+                      </div>
+                      <h2 className="text-[19px] font-medium">{post.title}</h2>
+                      <p className="line-clamp-2">{post.description}</p>
+                      <div className="flex items-center gap-1 mt-3">
+                        <Image
+                          src={post.authorPhoto}
+                          className="rounded-full"
+                          alt={post.author}
+                          height={24}
+                          width={24}
+                        />
+                        <p className="font-medium">{post.author}</p>
+                      </div>
                     </div>
                   </div>
                 </Link>
