@@ -6,7 +6,7 @@ import { RiGithubFill, RiInstagramFill, RiTwitterXFill } from "react-icons/ri";
 import { Karla } from "next/font/google";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
-import { memo } from "react";
+import { cache, memo } from "react";
 import { LazyLoadImageBlogPost } from "@/app/components/LazyLoader";
 
 const karla = Karla({ subsets: ["latin"] });
@@ -16,6 +16,10 @@ const BlogPost = dynamic(() => import("@/app/components/BlogPost"), {
   ssr: false,
 });
 
+const cachedFetchPostData = cache(async (slug: string) => {
+  return await fetchPostData(slug);
+});
+
 export default async function BlogPage({
   params,
 }: {
@@ -23,12 +27,8 @@ export default async function BlogPage({
 }) {
   const { slug } = params;
 
-  // Fetch the post data (frontmatter, content) and likes from the server
-  const { frontMatter, serializedContent } = await fetchPostData(
-    slug
-  );
-
-  const initialLikes=0
+  const post = await cachedFetchPostData(slug);
+  const { frontMatter, serializedContent, initialLikes } = post;
 
   return (
     <>
@@ -80,7 +80,7 @@ export default async function BlogPage({
               Array.isArray(frontMatter.categories) && (
                 <div className="mt-4">
                   <ul className="flex space-x-3">
-                    {frontMatter.categories.map((category, index) => (
+                    {frontMatter.categories.map((category: string, index: number) => (
                       <li
                         key={index}
                         className="bg-gray-200 px-3 py-1 rounded-full font-medium text-sm"

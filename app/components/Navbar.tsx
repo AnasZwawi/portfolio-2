@@ -97,7 +97,7 @@ export const Navbar = () => {
                 </span>
               </Link>
               <Link
-                href={"#projects"}
+                href={"/#projects"}
                 className="flex items-center gap-1 group relative transition duration-300 px-3 py-2.5"
               >
                 <BriefcaseBusiness className="w-4 h-4 hidden md:block" />
@@ -119,7 +119,7 @@ export const Navbar = () => {
                 </span>
               </Link>
               <Link
-                href="#about"
+                href="/#about"
                 className="flex items-center gap-1 group relative transition duration-300 px-3 py-2.5"
               >
                 <UserRound className="w-4 h-4 hidden md:block" />

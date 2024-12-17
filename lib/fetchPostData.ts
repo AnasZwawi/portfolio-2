@@ -37,7 +37,14 @@ const fetchLikesData = async (slug: string) => {
 };
 
 // Fetch post data
+const postDataCache: { [key: string]: any } = {};
+
 export async function fetchPostData(slug: string) {
+  // Check if data is already cached
+  if (postDataCache[slug]) {
+    return postDataCache[slug];
+  }
+
   const filePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, "utf8");
 
@@ -48,10 +55,15 @@ export async function fetchPostData(slug: string) {
   const serializedContent = await serialize(content);
 
   // Fetch likes data from the Neon database
-  // Use async function to fetch likes
+  const initialLikes = await fetchLikesData(slug); // Use async function to fetch likes
 
-  return { frontMatter, serializedContent };
+  // Store the data in the cache
+  const postData = { frontMatter, serializedContent, initialLikes };
+  postDataCache[slug] = postData;
+
+  return postData;
 }
+
 
 export async function fetchLikesPerPost(slug: string) {
 
