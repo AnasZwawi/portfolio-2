@@ -22,7 +22,7 @@
       "features": [
         "Microservices architecture",
         "Next.js and Go-powered platform",
-        "5K monthly active users",
+        "Integrating zipcode mapping",
         "Golang microservice for zipcode mapping"
       ],
       "image_url": "propria2.png",
