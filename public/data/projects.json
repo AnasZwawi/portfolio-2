@@ -4,7 +4,7 @@
       "name": "jobfitAI",
       "id": 1,
       "title": "AI-Powered Resume Screener",
-      "creation_year": 2024,
+      "creation_year": 2025,
       "features": [
         "Intelligent resume ranking",
         "Customizable job criteria",
@@ -27,11 +27,25 @@
       ],
       "image_url": "propria2.png",
       "project_url": "https://propria.vercel.app"
-
     },
     {
-      "name": "SugarCRM",
+      "name": "GSP",
       "id": 3,
+      "title": "GSP Agency Website",
+      "creation_year": 2023,
+      "features": [
+        "Modern and clean UI design",
+        "Smooth scroll and engaging animations",
+        "Responsive layout for all devices",
+        "Showcases services effectively"
+      ],
+      "image_url": "gspthumbnail.png",
+      "project_url": "https://gsp-agency.vercel.app"
+    },
+
+    {
+      "name": "SugarCRM",
+      "id": 4,
       "title": "Powerful Automated CRM",
       "creation_year": 2024,
       "features": [
@@ -42,11 +56,10 @@
       ],
       "image_url": "p2.png",
       "project_url": "/"
-
     },
     {
       "name": "Ziplorer",
-      "id": 4,
+      "id": 5,
       "title": "Zip Code API",
       "creation_year": 2024,
       "features": [

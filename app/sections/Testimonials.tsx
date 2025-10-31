@@ -36,7 +36,7 @@ export const Testimonials = () => {
       </div>
       <div className="w-full pb-16 md:pb-24 overflow-x-clip">
         <div className="flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex flex-none gap-9 py-4 pr-4 animate-move-left [animation-duration:30s] md:[animation-duration:90s] hover:[animation-play-state:paused]">
+          <div className="flex flex-none gap-9 py-4 pr-4 animate-move-left [animation-duration:30s] md:[animation-duration:60s] hover:[animation-play-state:paused]">
             {[...new Array(2)].fill(0).map((_, index) => (
               <Fragment key={index}>
                 {testimonials.map((testimonial) => (

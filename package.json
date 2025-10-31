@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.21.0",
+    "@google/generative-ai": "^0.24.1",
     "@lucide/lab": "^0.1.2",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.1.0",

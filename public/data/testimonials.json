@@ -8,25 +8,19 @@
       "face_url": "kris.webp"
     },
     {
-      "name": "Fabian Bogun",
-      "position": "Team Manager at SugarCRM",
+      "name": "GSP",
+      "position": "Social Media Marketing Agency",
       "id": 2,
-      "content": "Anas is a talented developer. He understood my requirements and delivered a scalable solution that has greatly improved our workflow.",
-      "face_url": "fabian.png"
+      "content": "Anas did an amazing job for us. Super reliable and easy to work with.",
+      "face_url": "gsp.jpg"
     },
+
     {
-      "name": "Kris L",
-      "position": "Founder & CEO of Propria",
+      "name": "Oussema Ben Houria",
+      "position": "CEO of Arcadia Prod",
       "id": 3,
-      "content": "I am grateful to be working with Anas.",
-      "face_url": "kris.webp"
-    },
-    {
-      "name": "Fabian Bogun",
-      "position": "Team Manager at SugarCRM",
-      "id": 4,
-      "content": "Anas is a talented developer. He understood my requirements and delivered a scalable solution that has greatly improved our workflow.",
-      "face_url": "fabian.png"
+      "content": "Really professional and efficient.",
+      "face_url": "oussema.jpg"
     }
   ]
 }

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const API_KEY = process.env.GEMINI_API_KEY; // Replace with your actual Gemini API key
+const API_KEY = process.env.GEMINI_API_KEY;
 
 export async function POST(req: NextRequest) {
   const { message } = await req.json();
@@ -15,11 +15,18 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // Initialize the GoogleGenerativeAI client with your API key
-    const genAI = new GoogleGenerativeAI(API_KEY as string);
+    // Validate API key
+    if (!API_KEY) {
+      throw new Error("GEMINI_API_KEY is not configured");
+    }
 
-    // Get the Gemini model (you can change the model version if needed)
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    // Initialize the GoogleGenerativeAI client
+    const genAI = new GoogleGenerativeAI(API_KEY);
+
+    // Use the correct model name for the stable API
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-2.5-flash"  // Try this more recent model
+    });
 
     // Generate content based on the input message
     const result = await model.generateContent(`
@@ -49,10 +56,8 @@ export async function POST(req: NextRequest) {
       Respond to: "${message}"
     `);
 
-    // Ensure result.response.text() is available, otherwise handle it gracefully
     const aiResponse = result?.response?.text() || "Sorry, I couldn't understand your question. Can you please rephrase it?";
 
-    // Return the AI response in the response body
     return NextResponse.json({ reply: aiResponse });
   } catch (error) {
     console.error("Error communicating with Gemini API:", error);
